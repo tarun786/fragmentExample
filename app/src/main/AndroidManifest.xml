@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.example.sqlitepractice.SqliteExample"></activity>
+
         <activity android:name=".SuccessActivity" />
         <activity android:name=".ActionUriView" />
         <activity android:name=".MainActivity">
@@ -22,6 +22,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2ActivitySharedPreference">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.example.sqlitepractice.SqliteExample">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
