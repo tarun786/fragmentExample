@@ -11,20 +11,20 @@ public class ContactDBHelper extends SQLiteOpenHelper {
     public static final String DBTABASE_NAME = "contact_db";
     public static final int DATABASE_VERSION = 1;
 
-    public static final String DATABASE_TABLE_QUERY = "create table "+ContactContract.ContactEntry.TABLE_NAME+
-            "("+ ContactContract.ContactEntry.CONTACT_ID+" number, "+ ContactContract.ContactEntry.NAME+" text, "
-            + ContactContract.ContactEntry.EMAIL+" text);";
-    public static final String DROP_TABLE_QUERY = "drop table if exists "+ ContactContract.ContactEntry.TABLE_NAME;
+    public static final String DATABASE_TABLE_QUERY = "create table " + ContactContract.ContactEntry.TABLE_NAME +
+            "(" + ContactContract.ContactEntry.CONTACT_ID + " number, " + ContactContract.ContactEntry.NAME + " text, "
+            + ContactContract.ContactEntry.EMAIL + " text);";
+    public static final String DROP_TABLE_QUERY = "drop table if exists " + ContactContract.ContactEntry.TABLE_NAME;
 
     public ContactDBHelper(Context context) {
-        super(context, DBTABASE_NAME,null, DATABASE_VERSION);
-        Log.d("Database operation","Database created..");
+        super(context, DBTABASE_NAME, null, DATABASE_VERSION);
+        Log.d("Database operation", "Database created..");
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(DATABASE_TABLE_QUERY);
-        Log.d("Database Operation","Table created...");
+        Log.d("Database Operation", "Table created...");
 
     }
 
@@ -37,19 +37,19 @@ public class ContactDBHelper extends SQLiteOpenHelper {
 
     /**
      * add contact in table
+     *
      * @param id
      * @param name
      * @param email
      * @param sqLiteDatabase
      */
-    public void addContact(int id, String name, String email, SQLiteDatabase sqLiteDatabase)
-    {
+    public void addContact(int id, String name, String email, SQLiteDatabase sqLiteDatabase) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ContactContract.ContactEntry.CONTACT_ID , id);
+        contentValues.put(ContactContract.ContactEntry.CONTACT_ID, id);
         contentValues.put(ContactContract.ContactEntry.NAME, name);
         contentValues.put(ContactContract.ContactEntry.EMAIL, email);
         sqLiteDatabase.insert(ContactContract.ContactEntry.TABLE_NAME, null, contentValues);
-        Log.d("Database Operation","One raw inserted..");
+        Log.d("Database Operation", "One raw inserted..");
 
     }
 }

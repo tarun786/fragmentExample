@@ -22,6 +22,7 @@ public class AddContactFrag extends Fragment {
 
     private Button btnSave;
     EditText Id, Name, Email;
+
     public AddContactFrag() {
         // Required empty public constructor
     }
@@ -46,12 +47,12 @@ public class AddContactFrag extends Fragment {
                 ContactDBHelper contactDBHelper = new ContactDBHelper(getActivity());
                 //here we are putting this database task in main thread that is not good for user interface always put db task in background thread
                 SQLiteDatabase sqLiteDatabase = contactDBHelper.getWritableDatabase();
-                contactDBHelper.addContact(Integer.parseInt(id),name,email,sqLiteDatabase);
+                contactDBHelper.addContact(Integer.parseInt(id), name, email, sqLiteDatabase);
                 contactDBHelper.close();
                 Id.setText("");
                 Name.setText("");
                 Email.setText("");
-                Toast.makeText(getActivity(),"Contact Saved Successfully..",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Contact Saved Successfully..", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

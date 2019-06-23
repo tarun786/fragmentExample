@@ -21,14 +21,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private Button btnSave, btnView, btnDelete, btnUpdate;
     OnDbOpListner onDbOpListner;
+
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    public interface OnDbOpListner
-    {
+    public interface OnDbOpListner {
         public void dbOpPerform(int method);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,8 +43,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.btn_add_contact:
                 onDbOpListner.dbOpPerform(0);
                 break;
@@ -53,14 +53,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Activity activity =(Activity) context;
-        try
-        {
+        Activity activity = (Activity) context;
+        try {
             onDbOpListner = (OnDbOpListner) activity;
-        }
-        catch (ClassCastException e)
-        {
-           throw new ClassCastException(activity.toString()+ "must implement the interface method..");
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + "must implement the interface method..");
         }
     }
 }

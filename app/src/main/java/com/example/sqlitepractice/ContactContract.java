@@ -1,17 +1,14 @@
 package com.example.sqlitepractice;
 
-public class ContactContract
-{
-    private ContactContract()
-    {
+public class ContactContract {
+    private ContactContract() {
 
     }
 
     /**
      * database schema
      */
-    public static class ContactEntry
-    {
+    public static class ContactEntry {
         public static final String TABLE_NAME = "contact_info";
         public static final String CONTACT_ID = "contact_id";
         public static final String NAME = "name";

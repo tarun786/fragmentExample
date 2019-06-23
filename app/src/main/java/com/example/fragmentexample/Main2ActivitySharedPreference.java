@@ -19,7 +19,8 @@ import android.widget.Toast;
 public class Main2ActivitySharedPreference extends AppCompatActivity {
 
     private SharedPreferenceConfig sharedPreferenceConfig;
-    private EditText UserName,UserPassword;
+    private EditText UserName, UserPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +29,8 @@ public class Main2ActivitySharedPreference extends AppCompatActivity {
         UserName = findViewById(R.id.user_name);
         UserPassword = findViewById(R.id.user_password);
 
-        if(sharedPreferenceConfig.readLoginStatus())
-        {
-            startActivity(new Intent(this,SuccessActivity.class));
+        if (sharedPreferenceConfig.readLoginStatus()) {
+            startActivity(new Intent(this, SuccessActivity.class));
             finish();
         }
     }
@@ -40,15 +40,12 @@ public class Main2ActivitySharedPreference extends AppCompatActivity {
 
         String userName = UserName.getText().toString();
         String userPass = UserPassword.getText().toString();
-        boolean loginStatus = validUser(userName,userPass);
-        if(loginStatus)
-        {
-            startActivity(new Intent(this,SuccessActivity.class));
+        boolean loginStatus = validUser(userName, userPass);
+        if (loginStatus) {
+            startActivity(new Intent(this, SuccessActivity.class));
             sharedPreferenceConfig.writeLoginStatus(true);
             finish();
-        }
-        else
-        {
+        } else {
             showToast();
             //Toast.makeText(this,"Login Failed... Please Try Again..",Toast.LENGTH_SHORT).show();
             UserName.setText("");
@@ -56,27 +53,23 @@ public class Main2ActivitySharedPreference extends AppCompatActivity {
         }
     }
 
-    private boolean validUser(String userName,String userPass)
-    {
+    private boolean validUser(String userName, String userPass) {
         boolean validUserStaus = false;
-        if(userName.equals(getResources().getString(R.string.user_name)) && userPass.equals(getResources().getString(R.string.user_password)))
-        {
+        if (userName.equals(getResources().getString(R.string.user_name)) && userPass.equals(getResources().getString(R.string.user_password))) {
             validUserStaus = true;
         }
         return validUserStaus;
     }
 
-    private void showToast()
-    {
+    private void showToast() {
         String info = "Wrong credentails..";
         Toast toast = Toast.makeText(this, Html.fromHtml("<font color='#e3f2fd' ><b>" + info + "</b></font>"), Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.BOTTOM ,0, 0);
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
         //View view =toast.getView();
         //view.setBackgroundColor(Color.GREEN); //any color your want
         toast.show();
 
     }
-
 
 
 }

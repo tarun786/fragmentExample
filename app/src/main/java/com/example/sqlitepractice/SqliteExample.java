@@ -14,10 +14,8 @@ public class SqliteExample extends AppCompatActivity implements OnDbOpListner {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sqlite_example);
 
-        if(findViewById(R.id.fragment_container) != null)
-        {
-            if(savedInstanceState != null)
-            {
+        if (findViewById(R.id.fragment_container) != null) {
+            if (savedInstanceState != null) {
                 return;
             }
 
@@ -29,8 +27,7 @@ public class SqliteExample extends AppCompatActivity implements OnDbOpListner {
     @Override
     public void dbOpPerform(int method) {
 
-        switch (method)
-        {
+        switch (method) {
             case 0:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddContactFrag()).addToBackStack(null).commit();
                 break;

@@ -9,6 +9,7 @@ import android.view.View;
 public class SuccessActivity extends AppCompatActivity {
 
     private SharedPreferenceConfig sharedPreferenceConfig;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +20,7 @@ public class SuccessActivity extends AppCompatActivity {
     public void userLogout(View view) {
 
         sharedPreferenceConfig.writeLoginStatus(false);
-        startActivity(new Intent(this,Main2ActivitySharedPreference.class));
+        startActivity(new Intent(this, Main2ActivitySharedPreference.class));
         finish();
     }
 }
