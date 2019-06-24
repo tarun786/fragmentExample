@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,21 +42,52 @@ public class AddContactFrag extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String id = Id.getText().toString();
-                String name = Name.getText().toString();
-                String email = Email.getText().toString();
-                ContactDBHelper contactDBHelper = new ContactDBHelper(getActivity());
-                //here we are putting this database task in main thread that is not good for user interface always put db task in background thread
-                SQLiteDatabase sqLiteDatabase = contactDBHelper.getWritableDatabase();
-                contactDBHelper.addContact(Integer.parseInt(id), name, email, sqLiteDatabase);
-                contactDBHelper.close();
-                Id.setText("");
-                Name.setText("");
-                Email.setText("");
-                Toast.makeText(getActivity(), "Contact Saved Successfully..", Toast.LENGTH_SHORT).show();
+                try {
+                    String id = Id.getText().toString();
+                    String name = Name.getText().toString();
+                    String email = Email.getText().toString();
+                    int idinInt = Integer.parseInt(id);
+                    if (validateUserInputs(idinInt, name, email)) {
+                        ContactDBHelper contactDBHelper = new ContactDBHelper(getActivity());
+                        //here we are putting this database task in main thread that is not good for user interface always put db task in background thread
+                        SQLiteDatabase sqLiteDatabase = contactDBHelper.getWritableDatabase();
+                        contactDBHelper.addContact(Integer.parseInt(id), name, email, sqLiteDatabase);
+                        contactDBHelper.close();
+                        Id.setText("");
+                        Name.setText("");
+                        Email.setText("");
+                        Toast.makeText(getActivity(), "Contact Saved Successfully..", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Id.setText("");
+                        Name.setText("");
+                        Email.setText("");
+                        Toast.makeText(getActivity(), "Add contact details are not correct..Please try again", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Id.setText("");
+                    Name.setText("");
+                    Email.setText("");
+                    Toast.makeText(getActivity(), "Add contact details are not correct..Please try again", Toast.LENGTH_SHORT).show();
+
+                }
             }
+
+
         });
         return view;
+    }
+
+    private boolean validateUserInputs(int id, String name, String email) {
+        boolean status = false;
+        try {
+            if (id >= 0 && name.length() > 0 && email.length() > 0) {
+                status = true;
+            }
+        } catch (Exception e) {
+            Log.d("Validate Users ", "add contact details is not valid..");
+            status = false;
+        }
+        return status;
     }
 
 }
