@@ -31,6 +31,10 @@ public class SqliteExample extends AppCompatActivity implements OnDbOpListner {
             case 0:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddContactFrag()).addToBackStack(null).commit();
                 break;
+
+            case 1:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReadContactsFragments()).addToBackStack(null).commit();
+                break;
         }
     }
 }

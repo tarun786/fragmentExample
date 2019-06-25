@@ -2,6 +2,7 @@ package com.example.sqlitepractice;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -51,5 +52,12 @@ public class ContactDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(ContactContract.ContactEntry.TABLE_NAME, null, contentValues);
         Log.d("Database Operation", "One raw inserted..");
 
+    }
+
+    public Cursor readContacts(SQLiteDatabase sqLiteDatabase) {
+
+        String[] projections = {ContactContract.ContactEntry.CONTACT_ID, ContactContract.ContactEntry.NAME, ContactContract.ContactEntry.EMAIL};
+        Cursor cursor = sqLiteDatabase.query(ContactContract.ContactEntry.TABLE_NAME, projections, null, null, null, null, null);
+        return cursor;
     }
 }
