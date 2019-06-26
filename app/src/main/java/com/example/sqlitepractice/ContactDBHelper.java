@@ -60,4 +60,16 @@ public class ContactDBHelper extends SQLiteOpenHelper {
         Cursor cursor = sqLiteDatabase.query(ContactContract.ContactEntry.TABLE_NAME, projections, null, null, null, null, null);
         return cursor;
     }
+
+    public void updateContact(int id, String name, String email, SQLiteDatabase sqLiteDatabase)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ContactContract.ContactEntry.NAME, name);
+        contentValues.put(ContactContract.ContactEntry.EMAIL, email);
+
+        String userSelectionID = ContactContract.ContactEntry.CONTACT_ID+" = "+"?";
+        sqLiteDatabase.update(ContactContract.ContactEntry.TABLE_NAME, contentValues, userSelectionID, new String[] {String.valueOf(id)});
+
+
+    }
 }

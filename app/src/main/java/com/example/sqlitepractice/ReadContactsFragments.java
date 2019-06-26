@@ -4,13 +4,12 @@ package com.example.sqlitepractice;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.fragmentexample.R;
 
@@ -52,4 +51,5 @@ public class ReadContactsFragments extends Fragment {
         Txt_display.setText(info);
         contactDBHelper.close();
     }
+
 }

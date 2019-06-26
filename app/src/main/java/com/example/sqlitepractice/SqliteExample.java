@@ -1,8 +1,8 @@
 package com.example.sqlitepractice;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fragmentexample.R;
 import com.example.sqlitepractice.HomeFragment.OnDbOpListner;
@@ -34,6 +34,10 @@ public class SqliteExample extends AppCompatActivity implements OnDbOpListner {
 
             case 1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReadContactsFragments()).addToBackStack(null).commit();
+                break;
+
+            case 2:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UpdateContactFragment()).addToBackStack(null).commit();
                 break;
         }
     }
