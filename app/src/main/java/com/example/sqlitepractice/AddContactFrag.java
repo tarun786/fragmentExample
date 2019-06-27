@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.common.utils.Validator;
 import com.example.fragmentexample.R;
 
 /**
@@ -21,7 +23,7 @@ import com.example.fragmentexample.R;
 public class AddContactFrag extends Fragment {
 
     private Button btnSave;
-    EditText Id, Name, Email;
+    private EditText Id, Name, Email;
 
     public AddContactFrag() {
         // Required empty public constructor
@@ -29,7 +31,7 @@ public class AddContactFrag extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.add_contact_fragment, container, false);
@@ -76,10 +78,10 @@ public class AddContactFrag extends Fragment {
         return view;
     }
 
-    protected boolean validateUserInputs(int id, String name, String email) {
+    private boolean validateUserInputs(int id, String name, String email) {
         boolean status = false;
         try {
-            if (id >= 0 && name.length() > 0 && email.length() > 0) {
+            if ((id > 0) && Validator.isNumeric(String.valueOf(id)) && Validator.verifyName(name) && Validator.isValidEmail(email)) {
                 status = true;
             }
         } catch (Exception e) {
