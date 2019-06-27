@@ -70,6 +70,11 @@ public class ContactDBHelper extends SQLiteOpenHelper {
         String userSelectionID = ContactContract.ContactEntry.CONTACT_ID+" = "+"?";
         sqLiteDatabase.update(ContactContract.ContactEntry.TABLE_NAME, contentValues, userSelectionID, new String[] {String.valueOf(id)});
 
+    }
 
+    public void deleteContact(int id, SQLiteDatabase sqLiteDatabase)
+    {
+        String selectionQuery = ContactContract.ContactEntry.CONTACT_ID+" = "+id;
+        sqLiteDatabase.delete(ContactContract.ContactEntry.TABLE_NAME,selectionQuery,null);
     }
 }

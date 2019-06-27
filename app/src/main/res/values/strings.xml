@@ -13,4 +13,6 @@
     <string name="update_name_label">Enter Name</string>
     <string name="update_email_label">Enter Email</string>
     <string name="update_btn">Update Contact</string>
+    <string name="label_delete_contact">Delete Contact</string>
+    <string name="delete_contact_id">Contact ID</string>
 </resources>
